@@ -1,5 +1,5 @@
 /*
-    Works in Linux (Mint 21/gcc-13) and Windows (cl.exe 19.38)
+    Runs on Linux (gcc-13) and Windows (cl.exe 19.38)
     https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 */
 
