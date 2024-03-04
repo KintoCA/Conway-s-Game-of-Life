@@ -40,14 +40,11 @@ inline bool is_alive(uint64_t board, uint8_t cId){
 inline int count_neighbors(uint64_t board, uint8_t cId){
     cId = (cId % 8) * 8 + cId / 8;
     int count = 0;
-    count += is_alive(board, (cId + 64 + 1) % 64) != 0;
-    count += is_alive(board, (cId + 64 - 1) % 64) != 0;
-    count += is_alive(board, (cId + 64 + 8) % 64) != 0;
-    count += is_alive(board, (cId + 64 - 8) % 64) != 0;
-    count += is_alive(board, (cId + 64 + 9) % 64) != 0;
-    count += is_alive(board, (cId + 64 - 9) % 64) != 0;
-    count += is_alive(board, (cId + 64 + 7) % 64) != 0;
-    count += is_alive(board, (cId + 64 - 7) % 64) != 0;
+    int off[8] = { 1, -1, 8, -8, 9, -9, 7, -7 };
+    for(int i = 0; i < 8; i++)
+    {
+        count += is_alive(board, (cId + 64 + off[i]) % 64) != 0;    
+    }
     return count;
 }
 
@@ -131,7 +128,7 @@ int main(int argc, char* argv[]){
 
     print_board(board);
     int counter = 1;
-    while (counter++ ^ 4)
+    while (counter++ ^ 40000000)
     {
         board = update(board);
         print_board(board);
