@@ -1,6 +1,21 @@
 /*
     Runs on Linux (gcc-13) and Windows (cl.exe 19.38)
     https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+    The solution is a simple implementation of Conway's Game of Life.
+    A 64 bit unsigned integer is used as a board since the dimension is 8x8. Each bit represents a cell.
+
+    For larger boards a 2D array would be more appropriate.
+    If the board size is huge, a sparse matrix or hashing approach would be a better choice.
+
+    The board is updated by counting the number of live neighbors for each cell.
+
+    The program takes an optional argument to set the initial state of the board.
+    The argument can be "beacon", "blinker", "toad" or "random".
+    If no argument is provided, the initial state is random.
+
+    The program prints the board to the console and updates the board every 200ms.
+    The program stops after 4 updates or when the board is empty.
 */
 
 
@@ -128,7 +143,7 @@ int main(int argc, char* argv[]){
 
     print_board(board);
     int counter = 1;
-    while (counter++ ^ 40000000)
+    while (counter++ ^ 4)
     {
         board = update(board);
         print_board(board);
